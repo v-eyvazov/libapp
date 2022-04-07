@@ -32,9 +32,6 @@ public class Book {
     @Column(name = "is_rented", nullable = false)
     private Boolean isRented = false;
 
-    @Column(name = "amount", nullable = false)
-    private Integer amount;
-
     @Column(name = "isbn", nullable = false, length = 300)
     private String isbn;
 

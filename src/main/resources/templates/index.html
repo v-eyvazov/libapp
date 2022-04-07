@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="../static/styles/style.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/style.css}" href="../static/styles/style.css">
 
     <title>Main Page</title>
 </head>
@@ -18,10 +18,10 @@
             <nav>
                 <ul>
                     <li>
-                        <a href="forms/bookForm.html">Create Book</a>
+                        <a th:href="@{create/bookForm}">Create Book</a>
                     </li>
                     <li>
-                        <a href="forms/authorForm.html">Create Author</a>
+                        <a th:href="@{create/authorForm}">Create Author</a>
                     </li>
                     <li>
                         <a th:href="@{create/publisherForm}">Create Publisher</a>

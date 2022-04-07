@@ -26,12 +26,12 @@ public class PublisherController {
     }
 
     @PostMapping("create/publisher")
-    public String createBook(@ModelAttribute PublisherForm publisherForm) {
+    public String createPublisher(@ModelAttribute PublisherForm publisherForm) {
         Publisher publisher = new Publisher();
         publisher.setName(publisherForm.getName());
         publisher.setWebsite(publisherForm.getWebsite());
         publisherService.save(publisher);
-        return "forms/publisherForm";
+        return "redirect:/create/publisherForm";
     }
 
 }

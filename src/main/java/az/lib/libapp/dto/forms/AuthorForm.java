@@ -9,10 +9,11 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class PublisherForm {
+public class AuthorForm {
 
-    private String name;
-    private String website;
+    private String firstName;
+    private String lastName;
+    private String secondName;
     private String nameAndId;
 
 }

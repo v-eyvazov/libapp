@@ -6,7 +6,6 @@ import az.lib.libapp.repositories.BookRepository;
 import az.lib.libapp.services.BookService;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 
 @Service
 public class BookServiceImpl implements BookService {
@@ -18,7 +17,12 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Iterable<Book> getAllBooks(){
+    public Iterable<Book> getAllBooks() {
         return bookRepository.findAll();
+    }
+
+    @Override
+    public void save(Book book) {
+        bookRepository.save(book);
     }
 }

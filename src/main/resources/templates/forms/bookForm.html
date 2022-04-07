@@ -3,9 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/style.css}" href="../../static/styles/style.css">
+
+
     <title>Create Book</title>
 </head>
 <body>
+<div class="container">
+    <h1>Book Form</h1>
+    <br>
+    <form action="#" th:action="@{/create/book}" th:object="${bookForm}" method="post">
+        <div class="form-block">
+            <label>Book Title: <input type="text" th:field="*{title}"/></label>
+        </div>
+        <div class="form-block">
+            <label>Book isbn: <input type="text" th:field="*{isbn}"/></label>
+        </div>
+        <div class="form-block">
+            <label>Is Rented: <input type="checkbox" th:field="*{isRented}"/></label>
+        </div>
+        <div class="form-block">
+            <label>Published On: <input type="date" th:field="*{publishedOn}"/></label>
+        </div>
 
+        <div class="form-block">
+            <label> Author:
+                <input list="authors" th:field="*{author.nameAndId}"/>
+                <datalist id="authors">
+                    <option th:each="author: ${authors}" th:value="${author.getFirstName()} + ' ' + '[id:' + ${author.getId()} + ']'" th:label="${author.getFirstName()}">
+                </datalist>
+            </label>
+            <input id="author-add" type='button' value="Add Author"/>
+        </div>
+
+        <div class="form-block">
+            <label> Publisher:
+                <input list="publishers" th:field="*{publisher.nameAndId}"/>
+                <datalist id="publishers">
+                    <option th:each="publisher: ${publishers}" th:value="${publisher.getName()} + ' ' + '[id:' + ${publisher.getId()} + ']'" th:label="${publisher.getName()}">
+                </datalist>
+            </label>
+            <input id="publisher-add" type='button' value="Add Publisher"/>
+        </div>
+
+        <div class="form-block">
+            <label><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></label>
+        </div>
+
+    </form>
+</div>
 </body>
 </html>
