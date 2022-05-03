@@ -20,10 +20,10 @@ public class AuthorController {
     }
 
 
-    @GetMapping("/create/authorForm")
+    @GetMapping("/create/author-form")
     public String showAuthorForm(Model model) {
         model.addAttribute("authorForm", new AuthorForm());
-        return "forms/authorForm";
+        return "forms/author-form";
     }
 
     @PostMapping("create/author")
@@ -33,7 +33,7 @@ public class AuthorController {
         author.setLastName(authorForm.getLastName());
         author.setSecondName(authorForm.getSecondName());
         authorService.save(author);
-        return "redirect:/create/authorForm";
+        return "redirect:/create/author-form";
     }
 
 }

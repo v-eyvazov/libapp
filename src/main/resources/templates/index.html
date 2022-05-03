@@ -1,38 +1,150 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:ital@1&display=swap"
+            rel="stylesheet"
+    />
 
-    <link rel="stylesheet" type="text/css" th:href="@{/styles/style.css}" href="../static/styles/style.css">
+    <link rel="stylesheet" th:href="@{/styles/main.css}" href="../static/styles/main.css"/>
+    <link rel="stylesheet" th:href="@{/styles/index-body.css}" href="../static/styles/index-body.css"/>
 
-    <title>Main Page</title>
+    <title>Welcome to the Library!</title>
 </head>
 <body>
-<div class="container">
-    <header>
-        <h1>This is Libapp</h1>
-    </header>
-    <main>
-        <section>
-            <nav>
-                <ul>
-                    <li>
-                        <a th:href="@{create/bookForm}">Create Book</a>
-                    </li>
-                    <li>
-                        <a th:href="@{create/authorForm}">Create Author</a>
-                    </li>
-                    <li>
-                        <a th:href="@{create/publisherForm}">Create Publisher</a>
-                    </li>
-                </ul>
-            </nav>
-        </section>
-    </main>
+<header class="main-header">
+    <div class="main-header__container">
+        <h1 class="main-heading"><a th:href="@{/}">LibApp</a></h1>
+        <nav class="main-nav">
+            <ul class="main-nav_items">
+                <li class="main-nav_item"><a href="#">About</a></li>
+                <li class="main-nav_item"><a href="#">Contact</a></li>
+                <li class="main-nav_item">
+                    <form
+                            class="main-nav__item--searchform"
+                            role="search"
+                    >
+                        <input
+                                class="main-nav__item--searchinput"
+                                type="search"
+                                name="book"
+                                placeholder="Enter a book name"
+                                aria-label="Enter a book name"
+                        />
+                    </form>
+                </li>
+                <li class="main-nav_item"><a href="#">Log in</a></li>
+                <li class="main-nav_item"><a href="#">Sign up</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<main class="main-content">
+    <section class="table-section">
+        <table class="book-table">
+            <thead class="book-table__head">
+            <tr class="book-table__row">
+                <th>ID</th>
+                <th>Author(s)</th>
+                <th>Title</th>
+                <th>Publisher</th>
+                <th>Year</th>
+                <th>Pages</th>
+                <th>Language</th>
+                <th>Edit</th>
+            </tr>
+            </thead>
+            <tbody class="book-table__body">
+            <tr class="book-table__row" th:each="book : ${books.page}">
+                <td th:text="${book.id}">1</td>
+                <td>
+                    <span th:each="authorsbook, iter : ${book.authorsBooks}">
+                            <a th:text="${authorsbook.author.firstName} + ' ' + ${authorsbook.author.lastName}"></a>
+                        <span th:if="${iter.count < book.authorsBooks.size()}">, </span>
+                    </span>
+                </td>
+                <td th:text="${book.title}">War and Peace</td>
+                <td th:text="${book.publisher.name}">Moscow Press</td>
+                <td th:text="${book.publishedOn}">1871</td>
+                <td th:text="${book.pages}">1022</td>
+                <td th:text="${book.language}">English</td>
+                <td><a th:href="@{/edit/book(id=${book.id})}">[edit]</a></td>
+            </tr>
+            </tbody>
+        </table>
 
-    <footer></footer>
+        <nav aria-label="Page navigation" class="paging">
+            <ul class="pagination" th:if="${books.page.totalPages > 1}">
+                <li class="page-item" th:classappend="${!books.paging.isPrevEnabled()? 'disabled' : ''}">
+                    <a class="page-link" th:href="@{'/?pageNumber=' + ${books.paging.pageNumber - 1}}"
+                       tabindex="-1">Previous</a>
+                </li>
+                <th:block th:each="item : ${books.paging.getItems()}">
+                    <li class="page-item" th:classappend="${item.index == books.paging.pageNumber? 'active' : ''}"
+                        th:if="${item.pageItemType.name() == 'PAGE'}">
+                        <a class="page-link" th:href="@{'/?pageNumber=' + ${item.index}}"
+                           th:text="${item.index}"></a>
+                    </li>
+                    <li class="page-item disabled" th:if="${item.pageItemType.name() == 'DOTS'}">
+                        <a class="page-link" href="#">...</a>
+                    </li>
+                </th:block>
+                <li class="page-item" th:classappend="${!books.paging.isNextEnabled()? 'disabled' : ''}">
+                    <a class="page-link" th:href="@{'/?pageNumber=' + ${books.paging.pageNumber + 1}}">Next</a>
+                </li>
+            </ul>
+        </nav>
 
-</div>
+    </section>
+</main>
+<footer class="main-footer">
+    <div class="main-footer__container">
+        <ul class="main-footer__items">
+            <li class="main-footer__item">
+                <h1 class="main-footer__item--heading">
+                    <a href="#">LibApp</a>
+                </h1>
+            </li>
+            <li class="main-footer__item">
+                <address>
+                    <p>
+                        <a href="mailto:support@lib.com"
+                        >support@lib.com</a
+                        >
+                    </p>
+                    <p>
+                        <a href="tel:+9941234567891"
+                        >+994 (123) 456-78-91</a
+                        >
+                    </p>
+
+                    <p>331 E Evelyn Ave Mountain View, CA 94041 USA</p>
+                </address>
+            </li>
+        </ul>
+        <ul class="main-footer__items">
+            <li class="main-footer__item"><a href="#">About</a></li>
+            <li class="main-footer__item">
+                <a href="#">Terms and Conditions</a>
+            </li>
+            <li class="main-footer__item">
+                <a href="#">Contact us</a>
+            </li>
+            <li class="main-footer__item"><a href="#">Careers</a></li>
+        </ul>
+        <ul class="main-footer__items">
+            <li class="main-footer__item"><a href="#">Facebook</a></li>
+            <li class="main-footer__item"><a href="#">Twitter</a></li>
+            <li class="main-footer__item"><a href="#">Linkedin</a></li>
+            <li class="main-footer__item"><a href="#">Instagram</a></li>
+        </ul>
+    </div>
+    <p id="copyright">&copy; 2022 NoOne. No rights reserved.</p>
+</footer>
 </body>
 </html>

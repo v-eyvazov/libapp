@@ -1,18 +1,17 @@
 package az.lib.libapp.controllers;
 
 import az.lib.libapp.domain.Author;
-import az.lib.libapp.domain.AuthorsBook;
+import az.lib.libapp.domain.AuthorsBooks;
 import az.lib.libapp.domain.Book;
 import az.lib.libapp.domain.Publisher;
 import az.lib.libapp.dto.forms.BookForm;
 import az.lib.libapp.services.AuthorService;
-import az.lib.libapp.services.AuthorsBookService;
+import az.lib.libapp.services.AuthorsBooksService;
 import az.lib.libapp.services.BookService;
 import az.lib.libapp.services.PublisherService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 
 
 @Controller
@@ -21,31 +20,27 @@ public class BookController {
     private final BookService bookService;
     private final AuthorService authorService;
     private final PublisherService publisherService;
-    private final AuthorsBookService authorsBookService;
+    private final AuthorsBooksService authorsBooksService;
 
     public BookController(BookService bookService,
                           AuthorService authorService,
                           PublisherService publisherService,
-                          AuthorsBookService authorsBookService) {
+                          AuthorsBooksService authorsBooksService) {
         this.bookService = bookService;
         this.authorService = authorService;
         this.publisherService = publisherService;
-        this.authorsBookService = authorsBookService;
+        this.authorsBooksService = authorsBooksService;
     }
 
-    @GetMapping("")
-    public String showIndexPage() {
-        return "index";
-    }
 
-    @GetMapping("/create/bookForm")
+    @GetMapping("/create/book-form")
     public String showBookForm(Model model) {
         Iterable<Author> authors = authorService.getAllAuthors();
         Iterable<Publisher> publishers = publisherService.getAllPublishers();
         model.addAttribute("authors", authors);
         model.addAttribute("publishers", publishers);
         model.addAttribute("bookForm", new BookForm());
-        return "forms/bookForm";
+        return "forms/book-form";
     }
 
     @PostMapping("create/book")
@@ -53,10 +48,10 @@ public class BookController {
         String publisherNameAndId = bookForm.getPublisher().getNameAndId();
         Publisher publisher = publisherService.getPublisherById(Integer.valueOf(
                 publisherNameAndId.
-                    substring(
-                            publisherNameAndId.indexOf(":") + 1,
-                            publisherNameAndId.indexOf("]")
-                ))).orElse(null);
+                        substring(
+                                publisherNameAndId.indexOf(":") + 1,
+                                publisherNameAndId.indexOf("]")
+                        ))).orElse(null);
 
         String authorNameAndId = bookForm.getPublisher().getNameAndId();
         Author author = authorService.getAuthorById(Integer.valueOf(
@@ -74,12 +69,12 @@ public class BookController {
         book.setPublisher(publisher);
         bookService.save(book);
 
-        AuthorsBook authorsBook = new AuthorsBook();
+        AuthorsBooks authorsBook = new AuthorsBooks();
         authorsBook.setBook(book);
         authorsBook.setAuthor(author);
-        authorsBookService.save(authorsBook);
+        authorsBooksService.save(authorsBook);
 
-        return "redirect:/create/bookForm";
+        return "redirect:/create/book-form";
     }
 
 }

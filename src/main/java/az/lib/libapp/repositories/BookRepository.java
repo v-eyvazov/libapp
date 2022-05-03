@@ -1,9 +1,9 @@
 package az.lib.libapp.repositories;
 
 import az.lib.libapp.domain.Book;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 
 
-public interface BookRepository extends CrudRepository<Book, Integer> {
+public interface BookRepository extends JpaRepository<Book, Integer> {
 }

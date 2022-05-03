@@ -1,23 +1,24 @@
 package az.lib.libapp.domain;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.LinkedList;
+import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 @Table(name = "publishers")
 public class Publisher {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    @EqualsAndHashCode.Include
     private Integer id;
 
     @Column(name = "name", nullable = false, length = 300)
@@ -27,7 +28,20 @@ public class Publisher {
     private String website;
 
     @OneToMany(mappedBy = "publisher")
-    private Set<Book> books = new LinkedHashSet<>();
+    private List<Book> books = new LinkedList<>();
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
+        Publisher publisher = (Publisher) o;
+
+        return id.equals(publisher.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
+    }
 }

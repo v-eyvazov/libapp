@@ -19,10 +19,10 @@ public class PublisherController {
         this.publisherService = publisherService;
     }
 
-    @GetMapping("/create/publisherForm")
+    @GetMapping("/create/publisher-form")
     public String showPublisherForm(Model model) {
         model.addAttribute("publisherForm", new PublisherForm());
-        return "forms/publisherForm";
+        return "forms/publisher-form";
     }
 
     @PostMapping("create/publisher")
@@ -31,7 +31,7 @@ public class PublisherController {
         publisher.setName(publisherForm.getName());
         publisher.setWebsite(publisherForm.getWebsite());
         publisherService.save(publisher);
-        return "redirect:/create/publisherForm";
+        return "redirect:/create/publisher-form";
     }
 
 }
