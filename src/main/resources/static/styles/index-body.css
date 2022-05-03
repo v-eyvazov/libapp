@@ -1,3 +1,13 @@
+.create-links__section {
+    width: 70%;
+    margin: 2rem auto;
+}
+
+.book-table__section {
+    width: 70%;
+    margin: 1.5rem auto;
+}
+
 .book-table {
     width: 100%;
 }

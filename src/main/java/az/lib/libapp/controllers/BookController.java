@@ -13,6 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import static az.lib.libapp.utilities.Extract.extractId;
+
 
 @Controller
 public class BookController {
@@ -33,7 +35,7 @@ public class BookController {
     }
 
 
-    @GetMapping("/create/book-form")
+    @GetMapping("/create/book")
     public String showBookForm(Model model) {
         Iterable<Author> authors = authorService.getAllAuthors();
         Iterable<Publisher> publishers = publisherService.getAllPublishers();
@@ -43,30 +45,20 @@ public class BookController {
         return "forms/book-form";
     }
 
-    @PostMapping("create/book")
+    @PostMapping("/form/create/book")
     public String createBook(@ModelAttribute BookForm bookForm) {
-        String publisherNameAndId = bookForm.getPublisher().getNameAndId();
-        Publisher publisher = publisherService.getPublisherById(Integer.valueOf(
-                publisherNameAndId.
-                        substring(
-                                publisherNameAndId.indexOf(":") + 1,
-                                publisherNameAndId.indexOf("]")
-                        ))).orElse(null);
+        Publisher publisher = publisherService.getPublisherById(extractId(bookForm.getPublisher().getNameAndId()))
+                .orElse(null);
+        Author author = authorService.getAuthorById(extractId(bookForm.getAuthor().getNameAndId()))
+                .orElse(null);
 
-        String authorNameAndId = bookForm.getPublisher().getNameAndId();
-        Author author = authorService.getAuthorById(Integer.valueOf(
-                authorNameAndId.
-                        substring(
-                                authorNameAndId.indexOf(":") + 1,
-                                authorNameAndId.indexOf("]")
-                        ))).orElse(null);
+        Book book = Book.builder()
+                .setTitle(bookForm.getTitle())
+                .setIsRented(bookForm.getIsRented())
+                .setIsbn(bookForm.getIsbn())
+                .setPublishedOn(bookForm.getPublishedOn())
+                .setPublisher(publisher).build();
 
-        Book book = new Book();
-        book.setTitle(bookForm.getTitle());
-        book.setIsRented(bookForm.getIsRented());
-        book.setIsbn(bookForm.getIsbn());
-        book.setPublishedOn(bookForm.getPublishedOn());
-        book.setPublisher(publisher);
         bookService.save(book);
 
         AuthorsBooks authorsBook = new AuthorsBooks();
@@ -74,7 +66,7 @@ public class BookController {
         authorsBook.setAuthor(author);
         authorsBooksService.save(authorsBook);
 
-        return "redirect:/create/book-form";
+        return "redirect:/create/book";
     }
 
 }

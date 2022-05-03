@@ -19,7 +19,7 @@ public class IndexController {
 
     @GetMapping("")
     public String showIndexPage(@RequestParam(value = "pageNumber", required = false, defaultValue = "1") int pageNumber,
-                                @RequestParam(value = "size", required = false, defaultValue = "2") int size, Model model) {
+                                @RequestParam(value = "size", required = false, defaultValue = "15") int size, Model model) {
         if (pageNumber < 1) {
             pageNumber = 1;
         }

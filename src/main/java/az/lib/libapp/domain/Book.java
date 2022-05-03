@@ -1,9 +1,6 @@
 package az.lib.libapp.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.LinkedList;
@@ -11,9 +8,7 @@ import java.util.List;
 
 
 @Getter
-@Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "books")
 public class Book {
@@ -48,7 +43,88 @@ public class Book {
     private String image;
 
     @OneToMany(mappedBy = "book")
-    private List<AuthorsBooks> authorsBooks = new LinkedList<>();
+    private final List<AuthorsBooks> authorsBooks = new LinkedList<>();
+
+//     <---------------------------------BUILDER PATTERN------------------------------------->
+
+    private Book(String title,
+                 Publisher publisher,
+                 Boolean isRented,
+                 String isbn,
+                 Short publishedOn,
+                 String language,
+                 Short pages,
+                 String image) {
+        this.title = title;
+        this.publisher = publisher;
+        this.isRented = isRented;
+        this.isbn = isbn;
+        this.publishedOn = publishedOn;
+        this.language = language;
+        this.pages = pages;
+        this.image = image;
+    }
+
+    public static BookBuilder builder() {
+        return new BookBuilder();
+    }
+
+    public static class BookBuilder {
+
+        private String title;
+        private Publisher publisher;
+        private Boolean isRented;
+        private String isbn;
+        private Short publishedOn;
+        private String language;
+        private Short pages;
+        private String image;
+
+        public BookBuilder setTitle(final String title) {
+            this.title = title;
+            return this;
+        }
+
+        public BookBuilder setPublisher(final Publisher publisher) {
+            this.publisher = publisher;
+            return this;
+        }
+
+        public BookBuilder setIsRented(final Boolean isRented) {
+            this.isRented = isRented;
+            return this;
+        }
+
+        public BookBuilder setIsbn(final String isbn) {
+            this.isbn = isbn;
+            return this;
+        }
+
+        public BookBuilder setPublishedOn(final Short publishedOn) {
+            this.publishedOn = publishedOn;
+            return this;
+        }
+
+        public BookBuilder setLanguage(final String language) {
+            this.language = language;
+            return this;
+        }
+
+        public BookBuilder setPages(final Short pages) {
+            this.pages = pages;
+            return this;
+        }
+
+        public BookBuilder setImage(final String image) {
+            this.image = image;
+            return this;
+        }
+
+        public Book build() {
+            return new Book(title, publisher, isRented, isbn, publishedOn, language, pages, image);
+        }
+    }
+
 
     @Override
     public boolean equals(Object o) {

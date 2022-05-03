@@ -1,31 +1,109 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" th:href="@{/styles/styles.css}" href="../../static/styles/styles.css">
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:ital@1&display=swap"
+            rel="stylesheet"
+    />
 
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/main.css}" href="../../static/styles/main.css"/>
 
     <title>Create Author</title>
 </head>
 <body>
-<div class="container">
-    <h1>Author Form</h1>
-    <br>
-    <form action="#" th:action="@{/create/author}" th:object="${authorForm}" method="post">
-        <div class="form-block">
-            <label>First Name: <input type="text" th:field="*{firstName}"/></label>
-        </div>
-        <div class="form-block">
-            <label>Last Name: <input type="text" th:field="*{lastName}"/></label>
-        </div>
-        <div class="form-block">
-            <label>Second Name: <input type="text" th:field="*{secondName}"/></label>
-        </div>
-        <div class="form-block">
-            <label><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></label>
-        </div>
-    </form>
-</div>
+<header class="main-header">
+    <div class="main-header__container">
+        <h1 class="main-heading"><a th:href="@{/}" href="#">LibApp</a></h1>
+        <nav class="main-nav">
+            <ul class="main-nav_items">
+                <li class="main-nav_item"><a href="#">About</a></li>
+                <li class="main-nav_item"><a href="#">Contact</a></li>
+                <li class="main-nav_item">
+                    <form
+                            class="main-nav__item--searchform"
+                            role="search"
+                    >
+                        <input
+                                class="main-nav__item--searchinput"
+                                type="search"
+                                name="book"
+                                placeholder="Enter a book name"
+                                aria-label="Enter a book name"
+                        />
+                    </form>
+                </li>
+                <li class="main-nav_item"><a href="#">Log in</a></li>
+                <li class="main-nav_item"><a href="#">Sign up</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<main class="main-content">
+    <section class="author-form__section">
+        <form th:action="@{/create/author}" th:object="${authorForm}" method="post">
+            <div class="form-block">
+                <label>First Name: <input type="text" th:field="*{firstName}"/></label>
+            </div>
+            <div class="form-block">
+                <label>Last Name: <input type="text" th:field="*{lastName}"/></label>
+            </div>
+            <div class="form-block">
+                <label>Second Name: <input type="text" th:field="*{secondName}"/></label>
+            </div>
+            <div class="form-block">
+                <label><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></label>
+            </div>
+        </form>
+    </section>
+</main>
+<footer class="main-footer">
+    <div class="main-footer__container">
+        <ul class="main-footer__items">
+            <li class="main-footer__item">
+                <h1 class="main-footer__item--heading">
+                    <a th:href="@{/}" href="#">LibApp</a>
+                </h1>
+            </li>
+            <li class="main-footer__item">
+                <address>
+                    <p>
+                        <a href="mailto:support@lib.com"
+                        >support@lib.com</a
+                        >
+                    </p>
+                    <p>
+                        <a href="tel:+9941234567891"
+                        >+994 (123) 456-78-91</a
+                        >
+                    </p>
+
+                    <p>331 E Evelyn Ave Mountain View, CA 94041 USA</p>
+                </address>
+            </li>
+        </ul>
+        <ul class="main-footer__items">
+            <li class="main-footer__item"><a href="#">About</a></li>
+            <li class="main-footer__item">
+                <a href="#">Terms and Conditions</a>
+            </li>
+            <li class="main-footer__item">
+                <a href="#">Contact us</a>
+            </li>
+            <li class="main-footer__item"><a href="#">Careers</a></li>
+        </ul>
+        <ul class="main-footer__items">
+            <li class="main-footer__item"><a href="#">Facebook</a></li>
+            <li class="main-footer__item"><a href="#">Twitter</a></li>
+            <li class="main-footer__item"><a href="#">Linkedin</a></li>
+            <li class="main-footer__item"><a href="#">Instagram</a></li>
+        </ul>
+    </div>
+    <p id="copyright">&copy; 2022 NoOne. No rights reserved.</p>
+</footer>
 </body>
 </html>

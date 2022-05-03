@@ -1,100 +1,100 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link
             href="https://fonts.googleapis.com/css2?family=Roboto:ital@1&display=swap"
             rel="stylesheet"
-        />
+    />
 
-        <link rel="stylesheet" th:href="/styles/main.css" href="../static/styles/main.css" />
-        <link rel="stylesheet" th:href="/styles/error.css" href="../static/styles/error.css" />
+    <link rel="stylesheet" type="text/css" th:href="/styles/main.css" href="../static/styles/main.css"/>
+    <link rel="stylesheet" type="text/css" th:href="/styles/error.css" href="../static/styles/error.css"/>
 
-        <title>Welcome to the Library!</title>
-    </head>
-    <body>
-        <header class="main-header">
-            <div class="main-header__container">
-                <h1 class="main-heading"><a href="index.html">LibApp</a></h1>
-                <nav class="main-nav">
-                    <ul class="main-nav_items">
-                        <li class="main-nav_item"><a href="#">About</a></li>
-                        <li class="main-nav_item"><a href="#">Contact</a></li>
-                        <li class="main-nav_item">
-                            <form
-                                class="main-nav__item--searchform"
-                                role="search"
-                            >
-                                <input
-                                    class="main-nav__item--searchinput"
-                                    type="search"
-                                    name="book"
-                                    placeholder="Enter a book name"
-                                    aria-label="Enter a book name"
-                                />
-                            </form>
-                        </li>
-                        <li class="main-nav_item"><a href="#">Log in</a></li>
-                        <li class="main-nav_item"><a href="#">Sign up</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </header>
-        <main class="main-content">
-            <section class="error-section">
-                <h1 class="error-code">404 - Not Found!</h1>
-                <p class="error-message">
-                    Oops, seems like there is no such page with that link...
-                </p>
-            </section>
-        </main>
-        <footer class="main-footer">
-            <div class="main-footer__container">
-                <ul class="main-footer__items">
-                    <li class="main-footer__item">
-                        <h1 class="main-footer__item--heading">
-                            <a href="#">LibApp</a>
-                        </h1>
-                    </li>
-                    <li class="main-footer__item">
-                        <address>
-                            <p>
-                                <a href="mailto:support@lib.com"
-                                    >support@lib.com</a
-                                >
-                            </p>
-                            <p>
-                                <a href="tel:+9941234567891"
-                                    >+994 (123) 456-78-91</a
-                                >
-                            </p>
+    <title>Welcome to the Library!</title>
+</head>
+<body>
+<header class="main-header">
+    <div class="main-header__container">
+        <h1 class="main-heading"><a href="index.html">LibApp</a></h1>
+        <nav class="main-nav">
+            <ul class="main-nav_items">
+                <li class="main-nav_item"><a href="#">About</a></li>
+                <li class="main-nav_item"><a href="#">Contact</a></li>
+                <li class="main-nav_item">
+                    <form
+                            class="main-nav__item--searchform"
+                            role="search"
+                    >
+                        <input
+                                class="main-nav__item--searchinput"
+                                type="search"
+                                name="book"
+                                placeholder="Enter a book name"
+                                aria-label="Enter a book name"
+                        />
+                    </form>
+                </li>
+                <li class="main-nav_item"><a href="#">Log in</a></li>
+                <li class="main-nav_item"><a href="#">Sign up</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<main class="main-content">
+    <section class="error-section">
+        <h1 class="error-code">404 - Not Found!</h1>
+        <p class="error-message">
+            Oops, seems like there is no such page with that link...
+        </p>
+    </section>
+</main>
+<footer class="main-footer">
+    <div class="main-footer__container">
+        <ul class="main-footer__items">
+            <li class="main-footer__item">
+                <h1 class="main-footer__item--heading">
+                    <a href="#">LibApp</a>
+                </h1>
+            </li>
+            <li class="main-footer__item">
+                <address>
+                    <p>
+                        <a href="mailto:support@lib.com"
+                        >support@lib.com</a
+                        >
+                    </p>
+                    <p>
+                        <a href="tel:+9941234567891"
+                        >+994 (123) 456-78-91</a
+                        >
+                    </p>
 
-                            <p>331 E Evelyn Ave Mountain View, CA 94041 USA</p>
-                        </address>
-                    </li>
-                </ul>
-                <ul class="main-footer__items">
-                    <li class="main-footer__item"><a href="#">About</a></li>
-                    <li class="main-footer__item">
-                        <a href="#">Terms and Conditions</a>
-                    </li>
-                    <li class="main-footer__item">
-                        <a href="#">Contact us</a>
-                    </li>
-                    <li class="main-footer__item"><a href="#">Careers</a></li>
-                </ul>
-                <ul class="main-footer__items">
-                    <li class="main-footer__item"><a href="#">Facebook</a></li>
-                    <li class="main-footer__item"><a href="#">Twitter</a></li>
-                    <li class="main-footer__item"><a href="#">Linkedin</a></li>
-                    <li class="main-footer__item"><a href="#">Intagram</a></li>
-                </ul>
-            </div>
-            <p id="copyright">&copy; 2022 NoOne. No rights reserved.</p>
-        </footer>
-    </body>
+                    <p>331 E Evelyn Ave Mountain View, CA 94041 USA</p>
+                </address>
+            </li>
+        </ul>
+        <ul class="main-footer__items">
+            <li class="main-footer__item"><a href="#">About</a></li>
+            <li class="main-footer__item">
+                <a href="#">Terms and Conditions</a>
+            </li>
+            <li class="main-footer__item">
+                <a href="#">Contact us</a>
+            </li>
+            <li class="main-footer__item"><a href="#">Careers</a></li>
+        </ul>
+        <ul class="main-footer__items">
+            <li class="main-footer__item"><a href="#">Facebook</a></li>
+            <li class="main-footer__item"><a href="#">Twitter</a></li>
+            <li class="main-footer__item"><a href="#">Linkedin</a></li>
+            <li class="main-footer__item"><a href="#">Intagram</a></li>
+        </ul>
+    </div>
+    <p id="copyright">&copy; 2022 NoOne. No rights reserved.</p>
+</footer>
+</body>
 </html>

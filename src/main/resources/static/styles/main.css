@@ -71,11 +71,6 @@ body {
     height: 1000px;
 }
 
-.table-section {
-    width: 70%;
-    margin: 5rem auto;
-}
-
 table {
     border-collapse: collapse;
 }

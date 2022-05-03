@@ -20,20 +20,20 @@ public class AuthorController {
     }
 
 
-    @GetMapping("/create/author-form")
+    @GetMapping("/create/author")
     public String showAuthorForm(Model model) {
         model.addAttribute("authorForm", new AuthorForm());
         return "forms/author-form";
     }
 
-    @PostMapping("create/author")
+    @PostMapping("/form/create/author")
     public String createAuthor(@ModelAttribute AuthorForm authorForm) {
         Author author = new Author();
         author.setFirstName(authorForm.getFirstName());
         author.setLastName(authorForm.getLastName());
         author.setSecondName(authorForm.getSecondName());
         authorService.save(author);
-        return "redirect:/create/author-form";
+        return "redirect:/create/author";
     }
 
 }
