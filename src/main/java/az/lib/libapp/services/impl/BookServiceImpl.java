@@ -2,8 +2,8 @@ package az.lib.libapp.services.impl;
 
 
 import az.lib.libapp.domain.Book;
-import az.lib.libapp.dto.paging.Paged;
-import az.lib.libapp.dto.paging.Paging;
+import az.lib.libapp.domain.paging.Paged;
+import az.lib.libapp.domain.paging.Paging;
 import az.lib.libapp.repositories.BookRepository;
 import az.lib.libapp.services.BookService;
 import org.springframework.data.domain.Page;

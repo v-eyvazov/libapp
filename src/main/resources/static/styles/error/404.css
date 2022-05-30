@@ -1,0 +1,12 @@
+.error-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 70%;
+    margin: 20vh auto;
+}
+
+.error-code,
+.error-message {
+    text-align: center;
+}

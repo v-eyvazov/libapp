@@ -4,26 +4,23 @@
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="preconnect" href="https://fonts.googleapis.com"/>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-    <link
-            href="https://fonts.googleapis.com/css2?family=Roboto:ital@1&display=swap"
-            rel="stylesheet"
-    />
 
-    <link rel="stylesheet" type="text/css" th:href="@{/styles/main.css}" href="../../static/styles/main.css"/>
+    <link rel="stylesheet" th:href="@{/styles/shared.css}"/>
+    <link rel="stylesheet" th:href="@{/styles/forms/create-forms/publisher-form.css}"/>
 
-    <title>Create Author</title>
+    <title>Welcome to the Library!</title>
 </head>
 <body>
 <header class="main-header">
     <div class="main-header__container">
-        <h1 class="main-heading"><a th:href="@{/}" href="#">LibApp</a></h1>
+        <h1 class="main-heading">
+            <a th:href="@{/}">LibApp</a>
+        </h1>
         <nav class="main-nav">
-            <ul class="main-nav_items">
-                <li class="main-nav_item"><a href="#">About</a></li>
-                <li class="main-nav_item"><a href="#">Contact</a></li>
-                <li class="main-nav_item">
+            <ul class="main-nav__items">
+                <li class="main-nav__item"><a href="#">About</a></li>
+                <li class="main-nav__item"><a href="#">Contact</a></li>
+                <li class="main-nav__item">
                     <form
                             class="main-nav__item--searchform"
                             role="search"
@@ -37,23 +34,36 @@
                         />
                     </form>
                 </li>
-                <li class="main-nav_item"><a href="#">Log in</a></li>
-                <li class="main-nav_item"><a href="#">Sign up</a></li>
+                <li class="main-nav__item"><a href="#">Log in</a></li>
+                <li class="main-nav__item"><a href="#">Sign up</a></li>
             </ul>
         </nav>
     </div>
 </header>
-<main class="main-content">
+<main>
     <section class="publisher-form__section">
-        <form th:action="@{/create/publisher}" th:object="${publisherForm}" method="post">
+        <form
+                th:action="@{/form/create/publisher}"
+                th:object="${publisherForm}"
+                method="post"
+                class="publisher-form"
+        >
             <div class="form-block">
-                <label>Publisher Name: <input type="text" th:field="*{name}"/></label>
+                <label
+                >Publisher Name:
+                    <input type="text" th:field="*{name}"
+                    /></label>
             </div>
             <div class="form-block">
-                <label>Website: <input type="text" th:field="*{website}"/></label>
+                <label
+                >Website: <input type="text" th:field="*{website}"
+                /></label>
             </div>
             <div class="form-block">
-                <label><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></label>
+                <label
+                ><input type="submit" value="Submit"/>
+                    <input type="reset" value="Reset"
+                    /></label>
             </div>
         </form>
     </section>
@@ -63,7 +73,7 @@
         <ul class="main-footer__items">
             <li class="main-footer__item">
                 <h1 class="main-footer__item--heading">
-                    <a th:href="@{/}" href="#">LibApp</a>
+                    <a th:href="@{/}">LibApp</a>
                 </h1>
             </li>
             <li class="main-footer__item">

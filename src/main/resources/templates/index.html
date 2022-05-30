@@ -4,27 +4,21 @@
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="preconnect" href="https://fonts.googleapis.com"/>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-    <link
-            href="https://fonts.googleapis.com/css2?family=Roboto:ital@1&display=swap"
-            rel="stylesheet"
-    />
 
-    <link rel="stylesheet" type="text/css" th:href="@{/styles/main.css}" href="../static/styles/main.css"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/styles/index-body.css}" href="../static/styles/index-body.css"/>
+    <link rel="stylesheet" th:href="@{/styles/shared.css}"/>
+    <link rel="stylesheet" th:href="@{/styles/main.css}"/>
 
     <title>Welcome to the Library!</title>
 </head>
 <body>
 <header class="main-header">
     <div class="main-header__container">
-        <h1 class="main-heading"><a th:href="@{/}" href="#">LibApp</a></h1>
+        <h1 class="main-heading"><a th:href="@{/}">LibApp</a></h1>
         <nav class="main-nav">
-            <ul class="main-nav_items">
-                <li class="main-nav_item"><a href="#">About</a></li>
-                <li class="main-nav_item"><a href="#">Contact</a></li>
-                <li class="main-nav_item">
+            <ul class="main-nav__items">
+                <li class="main-nav__item"><a href="#">About</a></li>
+                <li class="main-nav__item"><a href="#">Contact</a></li>
+                <li class="main-nav__item">
                     <form
                             class="main-nav__item--searchform"
                             role="search"
@@ -38,29 +32,33 @@
                         />
                     </form>
                 </li>
-                <li class="main-nav_item"><a href="#">Log in</a></li>
-                <li class="main-nav_item"><a href="#">Sign up</a></li>
+                <li class="main-nav__item"><a href="#">Log in</a></li>
+                <li class="main-nav__item"><a href="#">Sign up</a></li>
             </ul>
         </nav>
     </div>
 </header>
-<main class="main-content">
-
+<main>
     <section class="create-links__section">
         <ul class="create-links__list">
             <li class="create-links__item">
-                <a th:href="@{/create/publisher}" href="#">Add Publisher</a>
+                <a th:href="@{/create/publisher}"
+                >Add Publisher +</a
+                >
             </li>
             <li class="create-links__item">
-                <a th:href="@{/create/author}" href="#">Add Author</a>
+                <a th:href="@{/create/author}"
+                >Add Author +</a
+                >
             </li>
             <li class="create-links__item">
-                <a th:href="@{/create/book}" href="#">Add Book</a>
+                <a th:href="@{/create/book}"
+                >Add Book +</a
+                >
             </li>
         </ul>
     </section>
-
-    <section class="book-table__section">
+    <section class="table-section">
         <table class="book-table">
             <thead class="book-table__head">
             <tr class="book-table__row">
@@ -92,29 +90,43 @@
             </tr>
             </tbody>
         </table>
-
         <nav aria-label="Page navigation" class="paging">
             <ul class="pagination" th:if="${books.page.totalPages > 1}">
-                <li class="page-item" th:classappend="${!books.paging.isPrevEnabled()? 'disabled' : ''}">
-                    <a class="page-link" th:href="@{'/?pageNumber=' + ${books.paging.pageNumber - 1}}"
-                       tabindex="-1">Previous</a>
+                <li class="page-item">
+                    <a
+                            class="page-link"
+                            th:href="@{'/?pageNumber=' + ${books.paging.pageNumber - 1}}"
+                            tabindex="-1"
+                    >Previous</a
+                    >
                 </li>
                 <th:block th:each="item : ${books.paging.getItems()}">
-                    <li class="page-item" th:classappend="${item.index == books.paging.pageNumber? 'active' : ''}"
-                        th:if="${item.pageItemType.name() == 'PAGE'}">
-                        <a class="page-link" th:href="@{'/?pageNumber=' + ${item.index}}"
-                           th:text="${item.index}"></a>
+                    <li
+                            class="page-item"
+                            th:if="${item.pageItemType.name() == 'PAGE'}"
+                    >
+                        <a
+                                class="page-link"
+                                th:href="@{'/?pageNumber=' + ${item.index}}"
+                                th:text="${item.index}"
+                        ></a>
                     </li>
-                    <li class="page-item disabled" th:if="${item.pageItemType.name() == 'DOTS'}">
+                    <li
+                            class="page-item disabled"
+                            th:if="${item.pageItemType.name() == 'DOTS'}"
+                    >
                         <a class="page-link" href="#">...</a>
                     </li>
                 </th:block>
-                <li class="page-item" th:classappend="${!books.paging.isNextEnabled()? 'disabled' : ''}">
-                    <a class="page-link" th:href="@{'/?pageNumber=' + ${books.paging.pageNumber + 1}}">Next</a>
+                <li class="page-item">
+                    <a
+                            class="page-link"
+                            th:href="@{'/?pageNumber=' + ${books.paging.pageNumber + 1}}"
+                    >Next</a
+                    >
                 </li>
             </ul>
         </nav>
-
     </section>
 </main>
 <footer class="main-footer">
@@ -122,7 +134,7 @@
         <ul class="main-footer__items">
             <li class="main-footer__item">
                 <h1 class="main-footer__item--heading">
-                    <a th:href="@{/}" href="#">LibApp</a>
+                    <a th:href="@{/}">LibApp</a>
                 </h1>
             </li>
             <li class="main-footer__item">

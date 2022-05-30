@@ -42,7 +42,7 @@ public class BookController {
         model.addAttribute("authors", authors);
         model.addAttribute("publishers", publishers);
         model.addAttribute("bookForm", new BookForm());
-        return "forms/book-form";
+        return "forms/create-forms/book-form";
     }
 
     @PostMapping("/form/create/book")
@@ -57,7 +57,10 @@ public class BookController {
                 .setIsRented(bookForm.getIsRented())
                 .setIsbn(bookForm.getIsbn())
                 .setPublishedOn(bookForm.getPublishedOn())
-                .setPublisher(publisher).build();
+                .setPublisher(publisher)
+                .setLanguage(bookForm.getLanguage())
+                .setPages(bookForm.getPages())
+                .build();
 
         bookService.save(book);
 

@@ -1,4 +1,4 @@
-package az.lib.libapp.dto.paging;
+package az.lib.libapp.domain.paging;
 
 import lombok.*;
 

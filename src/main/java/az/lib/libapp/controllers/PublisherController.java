@@ -22,10 +22,10 @@ public class PublisherController {
     @GetMapping("/create/publisher")
     public String showPublisherForm(Model model) {
         model.addAttribute("publisherForm", new PublisherForm());
-        return "forms/publisher-form";
+        return "forms/create-forms/publisher-form";
     }
 
-    @PostMapping("form/create/publisher")
+    @PostMapping("/form/create/publisher")
     public String createPublisher(@ModelAttribute PublisherForm publisherForm) {
         Publisher publisher = new Publisher();
         publisher.setName(publisherForm.getName());

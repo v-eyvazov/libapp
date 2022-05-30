@@ -16,4 +16,6 @@ public class BookForm {
     private Short publishedOn;
     private PublisherForm publisher;
     private AuthorForm author;
+    private String language;
+    private Short pages;
 }

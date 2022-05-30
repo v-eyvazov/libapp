@@ -4,27 +4,23 @@
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="preconnect" href="https://fonts.googleapis.com"/>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-    <link
-            href="https://fonts.googleapis.com/css2?family=Roboto:ital@1&display=swap"
-            rel="stylesheet"
-    />
 
-    <link rel="stylesheet" type="text/css" th:href="/styles/main.css" href="../static/styles/main.css"/>
-    <link rel="stylesheet" type="text/css" th:href="/styles/error.css" href="../static/styles/error.css"/>
+    <link rel="stylesheet" th:href="@{/styles/shared.css}"/>
+    <link rel="stylesheet" th:href="@{/styles/forms/create-forms/author-form.css}"/>
 
     <title>Welcome to the Library!</title>
 </head>
 <body>
 <header class="main-header">
     <div class="main-header__container">
-        <h1 class="main-heading"><a href="index.html">LibApp</a></h1>
+        <h1 class="main-heading">
+            <a th:href="@{/}">LibApp</a>
+        </h1>
         <nav class="main-nav">
-            <ul class="main-nav_items">
-                <li class="main-nav_item"><a href="#">About</a></li>
-                <li class="main-nav_item"><a href="#">Contact</a></li>
-                <li class="main-nav_item">
+            <ul class="main-nav__items">
+                <li class="main-nav__item"><a href="#">About</a></li>
+                <li class="main-nav__item"><a href="#">Contact</a></li>
+                <li class="main-nav__item">
                     <form
                             class="main-nav__item--searchform"
                             role="search"
@@ -38,18 +34,45 @@
                         />
                     </form>
                 </li>
-                <li class="main-nav_item"><a href="#">Log in</a></li>
-                <li class="main-nav_item"><a href="#">Sign up</a></li>
+                <li class="main-nav__item"><a href="#">Log in</a></li>
+                <li class="main-nav__item"><a href="#">Sign up</a></li>
             </ul>
         </nav>
     </div>
 </header>
-<main class="main-content">
-    <section class="error-section">
-        <h1 class="error-code">404 - Not Found!</h1>
-        <p class="error-message">
-            Oops, seems like there is no such page with that link...
-        </p>
+<main>
+    <section class="author-form__section">
+        <form
+                th:action="@{/form/create/author}"
+                th:object="${authorForm}"
+                method="post"
+                class="author-form"
+        >
+            <div class="form-block">
+                <label
+                >First Name:
+                    <input type="text" th:field="*{firstName}"
+                    /></label>
+            </div>
+            <div class="form-block">
+                <label
+                >Last Name:
+                    <input type="text" th:field="*{lastName}"
+                    /></label>
+            </div>
+            <div class="form-block">
+                <label
+                >Second Name:
+                    <input type="text" th:field="*{secondName}"
+                    /></label>
+            </div>
+            <div class="form-block">
+                <label
+                ><input type="submit" value="Submit"/>
+                    <input type="reset" value="Reset"
+                    /></label>
+            </div>
+        </form>
     </section>
 </main>
 <footer class="main-footer">
@@ -57,7 +80,7 @@
         <ul class="main-footer__items">
             <li class="main-footer__item">
                 <h1 class="main-footer__item--heading">
-                    <a href="#">LibApp</a>
+                    <a th:href="@{/}">LibApp</a>
                 </h1>
             </li>
             <li class="main-footer__item">
@@ -91,7 +114,7 @@
             <li class="main-footer__item"><a href="#">Facebook</a></li>
             <li class="main-footer__item"><a href="#">Twitter</a></li>
             <li class="main-footer__item"><a href="#">Linkedin</a></li>
-            <li class="main-footer__item"><a href="#">Intagram</a></li>
+            <li class="main-footer__item"><a href="#">Instagram</a></li>
         </ul>
     </div>
     <p id="copyright">&copy; 2022 NoOne. No rights reserved.</p>

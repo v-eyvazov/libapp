@@ -2,7 +2,7 @@ package az.lib.libapp.services;
 
 
 import az.lib.libapp.domain.Book;
-import az.lib.libapp.dto.paging.Paged;
+import az.lib.libapp.domain.paging.Paged;
 
 public interface BookService {
     Iterable<Book> getAllBooks();
