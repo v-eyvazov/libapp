@@ -11,7 +11,10 @@ import az.lib.libapp.services.BookService;
 import az.lib.libapp.services.PublisherService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 import static az.lib.libapp.utilities.Extract.extractId;
 
@@ -46,7 +49,11 @@ public class BookController {
     }
 
     @PostMapping("/form/create/book")
-    public String createBook(@ModelAttribute BookForm bookForm) {
+    public String createBook(@ModelAttribute @Valid BookForm bookForm, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "forms/create-forms/book-form";
+        }
+
         Publisher publisher = publisherService.getPublisherById(extractId(bookForm.getPublisher().getNameAndId()))
                 .orElse(null);
         Author author = authorService.getAuthorById(extractId(bookForm.getAuthor().getNameAndId()))

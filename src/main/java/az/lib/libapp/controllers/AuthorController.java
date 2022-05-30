@@ -5,9 +5,12 @@ import az.lib.libapp.dto.forms.AuthorForm;
 import az.lib.libapp.services.AuthorService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import javax.validation.Valid;
 
 
 @Controller
@@ -27,7 +30,11 @@ public class AuthorController {
     }
 
     @PostMapping("/form/create/author")
-    public String createAuthor(@ModelAttribute AuthorForm authorForm) {
+    public String createAuthor(@ModelAttribute @Valid AuthorForm authorForm, BindingResult bindingResult) {
+        if(bindingResult.hasErrors()){
+            return "/forms/create-forms/author-form";
+        }
+
         Author author = new Author();
         author.setFirstName(authorForm.getFirstName());
         author.setLastName(authorForm.getLastName());

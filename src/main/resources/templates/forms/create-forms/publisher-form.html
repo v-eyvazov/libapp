@@ -51,14 +51,21 @@
             <div class="form-block">
                 <label
                 >Publisher Name:
-                    <input type="text" th:field="*{name}"
+                    <input type="text" required th:field="*{name}"
                     /></label>
             </div>
+            <div style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Publisher name is invalid!</div>
+
             <div class="form-block">
                 <label
-                >Website: <input type="text" th:field="*{website}"
+                >Website: <input type="url" name="url" id="url"
+                                 placeholder="https://example.com"
+                                 pattern="https://.*" size="30"
+                                 required th:field="*{website}"
                 /></label>
             </div>
+            <div style="color: red" th:if="${#fields.hasErrors('website')}" th:errors="*{website}">Website is invalid!</div>
+
             <div class="form-block">
                 <label
                 ><input type="submit" value="Submit"/>

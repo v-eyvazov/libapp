@@ -50,43 +50,62 @@
         >
             <div class="form-block">
                 <label
-                >Book Title: <input type="text" th:field="*{title}"
+                >Book Title: <input type="text" required th:field="*{title}"
                 /></label>
             </div>
+            <div style="color: red" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Title is invalid!</div>
+
+
             <div class="form-block">
                 <label
-                >Book isbn: <input type="text" th:field="*{isbn}"
+                >Book isbn: <input type="text" required th:field="*{isbn}"
                 /></label>
             </div>
+            <div style="color: red" th:if="${#fields.hasErrors('isbn')}" th:errors="*{isbn}">ISBN is invalid!</div>
+
             <div class="form-block">
                 <label
                 >Is Rented:
                     <input type="checkbox" th:field="*{isRented}"
                     /></label>
             </div>
+
             <div class="form-block">
                 <label
                 >Published On:
-                    <input type="number" th:field="*{publishedOn}"
+                    <input type="number" required th:field="*{publishedOn}"
                     /></label>
             </div>
-            <div class="form-block">
-                <label
-                >Language: <input type="text" th:field="*{language}"
-                /></label>
+            <div style="color: red" th:if="${#fields.hasErrors('publishedOn')}" th:errors="*{publishedOn}">Publish date
+                is invalid!
             </div>
 
             <div class="form-block">
                 <label
-                >Pages: <input type="text" th:field="*{pages}"
+                >Language: <input type="text" required th:field="*{language}"
                 /></label>
             </div>
+            <div style="color: red" th:if="${#fields.hasErrors('language')}" th:errors="*{language}">Language is
+                invalid!
+            </div>
+
+
+            <div class="form-block">
+                <label
+                >Pages: <input type="number" required th:field="*{pages}"
+                /></label>
+            </div>
+            <div style="color: red" th:if="${#fields.hasErrors('pages')}" th:errors="*{pages}">Number of pages is
+                invalid!
+            </div>
+
 
             <div class="form-block">
                 <label>
                     Author:
                     <input
                             list="authors"
+                            required
                             th:field="*{author.nameAndId}"
                     />
                     <datalist id="authors">
@@ -109,6 +128,7 @@
                     Publisher:
                     <input
                             list="publishers"
+                            required
                             th:field="*{publisher.nameAndId}"
                     />
                     <datalist id="publishers">

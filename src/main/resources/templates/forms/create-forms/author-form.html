@@ -51,21 +51,27 @@
             <div class="form-block">
                 <label
                 >First Name:
-                    <input type="text" th:field="*{firstName}"
+                    <input type="text" required th:field="*{firstName}"
                     /></label>
             </div>
+            <div style="color: red" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">Name is invalid!</div>
+
             <div class="form-block">
                 <label
                 >Last Name:
-                    <input type="text" th:field="*{lastName}"
+                    <input type="text" required th:field="*{lastName}"
                     /></label>
             </div>
+            <div style="color: red" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">LastName is invalid!</div>
+
             <div class="form-block">
                 <label
                 >Second Name:
-                    <input type="text" th:field="*{secondName}"
+                    <input type="text" required th:field="*{secondName}"
                     /></label>
             </div>
+            <div style="color: red" th:if="${#fields.hasErrors('secondName')}" th:errors="*{secondName}">SecondName is invalid!</div>
+
             <div class="form-block">
                 <label
                 ><input type="submit" value="Submit"/>
