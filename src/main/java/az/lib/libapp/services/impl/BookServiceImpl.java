@@ -22,20 +22,22 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Iterable<Book> getAllBooks() {
-        return bookRepository.findAll();
-    }
-
-    @Override
     public void save(Book book) {
         bookRepository.save(book);
     }
 
     @Override
-    public Paged<Book> getPage(int pageNumber, int size) {
+    public Paged<Book> getBooks(int pageNumber, int size) {
         PageRequest request = PageRequest.of(pageNumber - 1, size, Sort.by("id"));
         Page<Book> bookPage = bookRepository.findAll(request);
         return new Paged<>(bookPage, Paging.of(bookPage.getTotalPages(), pageNumber, size));
+    }
+
+    @Override
+    public Paged<Book> getBook(String title) {
+        PageRequest request = PageRequest.of(0, 20, Sort.by("id"));
+        Page<Book> bookPage = bookRepository.findBookByTitleContaining(request, title);
+        return new Paged<>(bookPage, Paging.of(bookPage.getTotalPages(), 0, 20));
     }
 
 

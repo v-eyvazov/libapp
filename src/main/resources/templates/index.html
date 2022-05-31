@@ -22,13 +22,15 @@
                     <form
                             class="main-nav__item--searchform"
                             role="search"
+                            th:action="@{/find}"
+                            method="get"
                     >
                         <input
                                 class="main-nav__item--searchinput"
                                 type="search"
-                                name="book"
-                                placeholder="Enter a book name"
-                                aria-label="Enter a book name"
+                                th:name="title"
+                                placeholder="Enter a book title"
+                                aria-label="Enter a book title"
                         />
                     </form>
                 </li>

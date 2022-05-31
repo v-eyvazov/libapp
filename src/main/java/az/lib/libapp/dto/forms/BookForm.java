@@ -31,7 +31,6 @@ public class BookForm {
     @Size(min = 3, max = 30, message = "Language must be between 3 and 30 characters!")
     private String language;
 
-    @NotBlank(message = "Number of pages cannot be empty!")
     @Min(value = 1, message = "Number of pages cannot be less than 1!")
     private Short pages;
 

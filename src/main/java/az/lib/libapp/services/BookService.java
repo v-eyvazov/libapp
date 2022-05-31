@@ -5,10 +5,11 @@ import az.lib.libapp.domain.Book;
 import az.lib.libapp.domain.paging.Paged;
 
 public interface BookService {
-    Iterable<Book> getAllBooks();
 
     void save(Book book);
 
-    Paged<Book> getPage(int pageNumber, int size);
+    Paged<Book> getBooks(int pageNumber, int size);
+
+    Paged<Book> getBook(String title);
 
 }

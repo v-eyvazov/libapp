@@ -45,13 +45,13 @@ public class BookController {
         model.addAttribute("authors", authors);
         model.addAttribute("publishers", publishers);
         model.addAttribute("bookForm", new BookForm());
-        return "forms/create-forms/book-form";
+        return "/forms/create-forms/book-form";
     }
 
     @PostMapping("/form/create/book")
     public String createBook(@ModelAttribute @Valid BookForm bookForm, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "forms/create-forms/book-form";
+            return "/forms/create-forms/book-form";
         }
 
         Publisher publisher = publisherService.getPublisherById(extractId(bookForm.getPublisher().getNameAndId()))

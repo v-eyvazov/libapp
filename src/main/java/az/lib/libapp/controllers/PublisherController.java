@@ -25,13 +25,13 @@ public class PublisherController {
     @GetMapping("/create/publisher")
     public String showPublisherForm(Model model) {
         model.addAttribute("publisherForm", new PublisherForm());
-        return "forms/create-forms/publisher-form";
+        return "/forms/create-forms/publisher-form";
     }
 
     @PostMapping("/form/create/publisher")
     public String createPublisher(@ModelAttribute @Valid PublisherForm publisherForm, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "forms/create-forms/publisher-form";
+            return "/forms/create-forms/publisher-form";
         }
         Publisher publisher = new Publisher();
         publisher.setName(publisherForm.getName());

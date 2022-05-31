@@ -17,13 +17,19 @@ public class IndexController {
     }
 
 
-    @GetMapping("")
+    @GetMapping("/")
     public String showIndexPage(@RequestParam(value = "pageNumber", required = false, defaultValue = "1") int pageNumber,
                                 @RequestParam(value = "size", required = false, defaultValue = "20") int size, Model model) {
         if (pageNumber < 1) {
             pageNumber = 1;
         }
-        model.addAttribute("books", bookService.getPage(pageNumber, size));
+        model.addAttribute("books", bookService.getBooks(pageNumber, size));
+        return "index";
+    }
+
+    @GetMapping("/find")
+    public String findBook(@RequestParam String title, Model model){
+        model.addAttribute("books", bookService.getBook(title));
         return "index";
     }
 
